@@ -1,6 +1,4 @@
-import React, { useState, useEffect } from 'react';
 import css from "./Phonebook.module.css";
-import { nanoid } from 'nanoid';
 import ContactForm from "./ContactForm/ContactForm";
 import ContactList from './ContactList/ContactList';
 import Filter from './Filter/Filter';
@@ -14,17 +12,6 @@ export default function Phonebook() {
     const contacts = useSelector(getContacts);
     const filter = useSelector(getFilter);
     const dispatch = useDispatch();
-
-
-    // const [contacts, setContacts] = useState(() => {
-    //     const value = JSON.parse(localStorage.getItem("contacts"));
-    //     return value ?? [];
-    // });
-    // const [filter, setFilter] = useState('');
-
-    useEffect(() => {
-        localStorage.setItem("contacts", JSON.stringify(contacts));    
-    }, [contacts])
 
     const onAddContats = (data) => {
           if (isDuplicate(data)) {
