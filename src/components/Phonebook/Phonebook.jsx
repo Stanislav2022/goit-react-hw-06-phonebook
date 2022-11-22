@@ -5,7 +5,7 @@ import Filter from './Filter/Filter';
 import { useSelector, useDispatch } from 'react-redux';
 import { getContacts } from 'redux/contacts/contacts-selector';
 import { getFilter } from 'redux/filter/filter-selector';
-import { addContats, removeContact } from 'redux/contacts/contacts-actions';
+import { addContact, removeContact } from 'redux/contacts/contacts-slice';
 import { setFilter } from 'redux/filter/filter-actions';
 
 
@@ -14,11 +14,11 @@ export default function Phonebook() {
     const filter = useSelector(getFilter);
     const dispatch = useDispatch();
 
-    const onAddContats = (data) => {
+    const onAddContacts = (data) => {
           if (isDuplicate(data)) {
             return alert(`${data.name} - is already in contacts`)
         }
-        const action = addContats(data);
+        const action = addContact(data);
         dispatch(action);
     };
 
@@ -57,7 +57,7 @@ export default function Phonebook() {
         <>
             <div className={css.form}>
                 <h1>Phonebook</h1>
-                <ContactForm onSubmit={onAddContats} />
+                <ContactForm onSubmit={onAddContacts} />
             </div>
             <div className={css.form}>
                 <h2>Contacts</h2>
