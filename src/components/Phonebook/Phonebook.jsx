@@ -3,10 +3,12 @@ import ContactForm from "./ContactForm/ContactForm";
 import ContactList from './ContactList/ContactList';
 import Filter from './Filter/Filter';
 import { useSelector, useDispatch } from 'react-redux';
+import { addContact, removeContact } from 'redux/contacts/contacts-slice';
+import { setFilter } from 'redux/filter/filter-slice';
 import { getContacts } from 'redux/contacts/contacts-selector';
 import { getFilter } from 'redux/filter/filter-selector';
-import { addContact, removeContact } from 'redux/contacts/contacts-slice';
-import { setFilter } from 'redux/filter/filter-actions';
+
+
 
 
 export default function Phonebook() {
