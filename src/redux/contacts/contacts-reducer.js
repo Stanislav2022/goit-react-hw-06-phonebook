@@ -2,7 +2,7 @@ import { ADD_CONTACT, REMOVE_CONTACT } from './contacts-types';
 
 const initialState = [];
 
-const contactsRreducer = (store = initialState, { type, payload }) => {
+const contactsReducer = (store = initialState, { type, payload }) => {
   switch (type) {
     case ADD_CONTACT:
       const newContact = [...store.contacts, payload];
@@ -14,4 +14,4 @@ const contactsRreducer = (store = initialState, { type, payload }) => {
       return store;
   }
 };
-export default contactsRreducer;
+export default contactsReducer;
