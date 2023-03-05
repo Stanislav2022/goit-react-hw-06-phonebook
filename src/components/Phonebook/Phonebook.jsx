@@ -1,7 +1,10 @@
+import React from "react";
 import css from "./Phonebook.module.css";
 import ContactForm from "./ContactForm/ContactForm";
 import ContactList from './ContactList/ContactList';
 import Filter from './Filter/Filter';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { useSelector, useDispatch } from 'react-redux';
 import { addContact, removeContact } from 'redux/contacts/contacts-slice';
 import { setFilter } from 'redux/filter/filter-slice';
@@ -17,11 +20,14 @@ export default function Phonebook() {
     const dispatch = useDispatch();
 
     const onAddContacts = (data) => {
-          if (isDuplicate(data)) {
-            return alert(`${data.name} - is already in contacts`)
+        if (!isDuplicate(data)) {
+          const action = addContact(data);
+          return  dispatch(action);
         }
-        const action = addContact(data);
-        dispatch(action);
+          const notify = () => toast(`${data.name} - is already in contacts`);
+          notify()
+        
+
     };
 
     const onRemoveContact = (id) => {
@@ -65,7 +71,9 @@ export default function Phonebook() {
                 <h2>Contacts</h2>
                 <Filter filter={ filter} handleChange={handleChange}  />
                 <ContactList items={filterContacts} removeContact={onRemoveContact} />
+                
             </div>
+            <ToastContainer />
        </>
     )
 }
