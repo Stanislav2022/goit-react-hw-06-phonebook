@@ -1,4 +1,4 @@
-import Phonebook from "./components/Phonebook/Phonebook";
+import { Phonebook } from "./components/Phonebook/Phonebook";
 import { PersistGate } from "redux-persist/lib/integration/react";
 import { persistor } from "redux/store";
 

@@ -1,6 +1,17 @@
-import PropTypes from 'prop-types'
+import { useDispatch, useSelector } from "react-redux"
+import { setFilter } from 'redux/filter/filter-slice';
+import { getFilter } from 'redux/filter/filter-selector';
 
-export default function Filter({ handleChange, filter }) {
+export const Filter = () => {
+    const dispatch = useDispatch();
+    const filter = useSelector(getFilter);
+
+    const handleChange = (e) => {
+    const { value } = e.target;
+    dispatch(setFilter(value))
+    };
+
+
     return (
         <div>
             <p>Find contacts by name:</p>
@@ -9,7 +20,3 @@ export default function Filter({ handleChange, filter }) {
   )
 }
 
-Filter.propTypes = {
-  filter: PropTypes.string.isRequired,
-  handleChange: PropTypes.func.isRequired, 
-};
